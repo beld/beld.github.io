@@ -1,74 +1,96 @@
-#
-# This file contains configuration flags to customize your site
-#
+# Site settings
+title: Hux Blog
+SEOTitle: 黄玄的博客 | Hux Blog
+header-img: img/home-bg.jpg
+email: huxpro@gmail.com
+description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Front-End Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
+keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品, 肖玉, Lynn, 肖玉的男朋友"
+url: "http://huangxuan.me"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
-# Name of your site (displayed in the header)
-name: Beld
 
-# Short bio or description (displayed in the header)
-description: Life is so hard, why so serious 
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://avatars1.githubusercontent.com/u/4143689?v=3&s=460
+# SNS settings
+RSS: false
+weibo_username:     huxpro
+zhihu_username:     huxpro
+github_username:    huxpro
+#twitter_username:  huxpro
+facebook_username:  huxpro
 
-#
-# Flags below are optional
-#
 
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email: ding.liu@tum.de
-  facebook: hardstriver
-  flickr:
-  github: beld
-  instagram: hardstriver
-  linkedin:
-  pinterest:
-  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
-  twitter: 
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
 
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus:
-
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
-
-# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
-# Used for Sitemap.xml and your RSS feed
-url:
-
-# If you're hosting your site at a Project repository on GitHub pages
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
-
-#
-# !! You don't need to change any of the configuration flags below !!
-#
-
-markdown: redcarpet
+# Build settings
 highlighter: pygments
-permalink: /:title/
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-# The release of Jekyll Now that you're using
-version: v1.1.0
 
-# Set the Sass partials directory, as we're using @imports
-sass:
-  style: :expanded # You might prefer to minify using :compressed
 
-# Use the following plug-ins
-gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
 
-# Exclude these files from your production _site
-exclude:
-    - Gemfile
-    - Gemfile.lock
-    - LICENSE
-    - README.md
+
+
+# Disqus settings
+#disqus_username: _your_disqus_short_name_
+
+# Duoshuo settings
+duoshuo_username: huxblog
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+# Google Analytics
+ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_domain: huangxuan.me
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
+sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "天镶的博客",
+        href: "http://lingyu.wang/"
+    },{
+        title: "Luke的自留地",
+        href: "http://hmqk1995.github.io"
+    },{
+        title: "SmdCn's Blog",
+        href: "http://blog.smdcn.net"
+    },{
+        title: "解旻的博客",
+        href: "http://xieminis.me/"
+    },{
+        title: "DHong Say",
+        href: "http://dhong.co"
+    },{
+        title: "尹峰以为",
+        href: "http://ingf.github.io/"
+    }
+]
