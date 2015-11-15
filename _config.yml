@@ -43,9 +43,9 @@ kramdown:
 disqus_username: hardstriver
 
 # Duoshuo settings
-duoshuo_username: beld
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: false                    # set to false if you want to use Comment without Sharing
+# duoshuo_username: beld
+# # Share component is depend on Comment so we can NOT use share only.
+# duoshuo_share: false                    # set to false if you want to use Comment without Sharing
 
 
 
