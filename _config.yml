@@ -41,7 +41,7 @@ kramdown:
 
 
 # # Disqus settings
-# disqus_username: beldblog
+disqus_username: beldblog
 
 # Duoshuo settings
 # duoshuo_username: beld
