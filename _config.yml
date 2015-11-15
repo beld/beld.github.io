@@ -39,8 +39,8 @@ kramdown:
 
 
 
-# Disqus settings
-disqus_username: hardstriver
+# # Disqus settings
+# disqus_username: hardstriver
 
 # Duoshuo settings
 duoshuo_username: beld
