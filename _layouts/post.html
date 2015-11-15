@@ -8,144 +8,219 @@ layout: default
 
 <!-- Post Header -->
 <style type="text/css">
-    header.intro-header{
-        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
-    }
+	header.intro-header{
+		background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
+	}
 </style>
 <header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        {% for tag in page.tags %}
-                        <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
-                        {% endfor %}
-                    </div>
-                    <h1>{{ page.title }}</h1>
-                    {% comment %}
-                        always create a h2 for keeping the margin , Hux
-                    {% endcomment %}
-                    {% comment %} if page.subtitle {% endcomment %}
-                    <h2 class="subheading">{{ page.subtitle }}</h2>
-                    {% comment %} endif {% endcomment %}
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="post-heading" itemscope itemtype="http://schema.org/NewsArticle">
+					<div class="tags">
+						{% for tag in page.tags %}
+						<a class="tag" href="/tags/#{{ tag }}" rel="tag" title="{{ tag }}">{{ tag }}</a>
+						{% endfor %}
+					</div>
+					<h1 itemprop="headline">{{ page.title }}</h1>
+					<h2 class="subheading">{{ page.subtitle }}</h2>
+					{% comment %} endif {% endcomment %}
+					<span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+					<meta itemprop="alternativeHeadline" content="{{ page.description }}" />
+					<meta itemprop="image" content="{{ site.url }}/{% if page.thumb-img %}{{ page.thumb-img }}{% else %}assets/common/icon_wechat.png{% endif %}" alt="{{ page.title }}" />
+					<meta itemprop="datePublished" content="{{ page.date }}" />
+				</div>
+			</div>
+		</div>
+	</div>
 </header>
 
 <!-- Post Content -->
 <article>
-    <div class="container">
-        <div class="row">
+	<div class="container">
+		<div class="row">
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+	<!-- Post Container -->
+			<div class="
+				col-lg-8 col-lg-offset-2
+				col-md-10 col-md-offset-1
+				post-container">
 
 				{{ content }}
 
-                <hr>
 
-                <!-- <div id="disqus_thread"></div>
-                  <script type="text/javascript">
-                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                    var disqus_shortname = 'beldblog'; // required: replace example with your forum shortname
+				{{ // page }}
 
-                    /* * * DON'T EDIT BELOW THIS LINE * * */
-                    (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                  </script>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+				<hr>
 
-                <ul class="pager">
-                    {% if page.previous.url %}
-                    <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
-                    </li>
-                    {% endif %}
-                    {% if page.next.url %}
-                    <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
-                    </li>
-                    {% endif %}
-                </ul>
+				{% if site.duoshuo_share && site.duoshuo_username %}
+				<!-- 多说 Share start -->
+				<div class="ds-share"
+					style="text-align: right"
+					data-thread-key="{{page.id}}"
+					data-title="{{page.title}}"
+					data-url="{{site.url}}{{page.url}}"
+					data-images="{{ site.url }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}"
+					data-content="{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }} " >
+					<div class="ds-share-inline">
+					  <ul  class="ds-share-icons-16">
+						<li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+						<li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+						<li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+						<li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+					  </ul>
+					  <div class="ds-share-icons-more">
+					  </div>
+					</div>
+				<hr>
+				</div>
+				<!-- 多说 Share end-->
+				{% endif %}
 
-                {% if site.disqus_username %}
-        				<!-- 评论框 start -->
-        				<div class="post-comment">
-        				      <div id="disqus_thread" class="disqus-thread"
-        						        data-thread-key="{{page.id}}"
-        						        data-title="{{page.title}}"
-        			             data-url="{{site.url}}{{page.url}}" >
-        					    </div>
-        				</div>
-        				<!-- 评论框 end -->
-        				{% endif %}
 
-            </div>
+				<ul class="pager">
+					{% if page.previous.url %}
+					<li class="previous">
+						<a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.previous.title}}" rel="bookmark">&larr; {{page.previous.title}}</a>
+					</li>
+					{% endif %}
+					{% if page.next.url %}
+					<li class="next">
+						<a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.next.title}}" rel="bookmark">{{page.next.title}} &rarr;</a>
+					</li>
+					{% endif %}
+				</ul>
 
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
 
-                <!-- Featured Tags -->
-                {% if site.featured-tags %}
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-        				{% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
-                				<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-                                    {{ tag[0] }}
-                                </a>
-                            {% endif %}
-        				{% endfor %}
-        			</div>
-                </section>
-                {% endif %}
+				{% if site.disqus_username %}
+				<!-- 评论框 start -->
+				<div class="post-comment">
+					<div id="disqus_thread" class="disqus-thread"
+						data-thread-key="{{page.id}}"
+						data-title="{{page.title}}"
+						data-url="{{site.url}}{{page.url}}" >
+					</div>
+				</div>
+				<!-- 评论框 end -->
+				{% endif %}
 
-                <!-- Friends Blog -->
-                {% if site.friends %}
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    {% for friend in site.friends %}
-                        <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+			</div>
+
+
+		</div>
+	</div>
 </article>
 
+<aside class="post-side">
+	<div class="container">
+		<div class="row">
+			<!-- Sidebar Container -->
+			<div class="
+				col-lg-8 col-lg-offset-2
+				col-md-10 col-md-offset-1
+				sidebar-container">
 
+				<!-- Featured Tags -->
+				{% if site.featured-tags %}
+				<section>
+					<hr class="hidden-sm hidden-xs">
+					<h5><a href="/tags/" rel="tag">FEATURED TAGS</a></h5>
+					<div class="tags">
+						{% for tag in site.tags %}
+							{% if tag[1].size > {{site.featured-condition-size}} %}
+								<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="tag" date-size="{{ tag[1].size }}">
+									{{ tag[0] }}
+								</a>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</section>
+				{% endif %}
+
+				<!-- Friends Blog -->
+				{% if site.friends %}
+				<hr>
+				<h5>FRIENDS</h5>
+				<ul class="list-inline">
+					{% for friend in site.friends %}
+						<li><a href="{{friend.href}}">{{friend.title}}</a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+
+				<!-- Search Page -->
+				{% if site.search %}
+				<hr>
+				<h5><a href="/search/">Search</a></h5>
+				<div class="search">
+					{% if site.custom-search %}
+					<!-- 自定义搜索 -->
+						<form class="search-form" action="/search/">
+							<input type="search" name="q" class="search-input" placeholder="{{ site.search-placeholder }}">
+						</form>
+					{% else %}
+					<!-- 直接跳转搜索引擎 -->
+						{% if site.search-engine == 'google' %}
+							<form id="search-form" target="_blank" method="get" class="search-form" action="https://www.google.com/search">
+								<input type="search" name="q" class="search-input" placeholder="{{ site.search-placeholder }}">
+								<input type="hidden" name="sitesearch" value="{{ site.url }}">
+								<script>
+								if(navigator.userAgent.match(/(iPod|iPhone|iPad)/i)) {
+									/* fix iOS 系统禁止新窗口提交表单 */
+									document.getElementById('search-form').removeAttribute('target');
+								}
+								</script>
+							</form>
+						{% else %}
+							<form id="search-form" target="_blank" method="get" class="search-form" action="https://www.baidu.com/baidu">
+								<input type="search" name="word" class="search-input" placeholder="{{ site.search-placeholder }}">
+								<input type="hidden" name="si" value="{{ site.url }}">
+								<input type="hidden" name="tn" value="bds">
+								<input type="hidden" name="cl" value="3">
+								<input type="hidden" name="ct" value="2097152">
+								<script>
+									var siInput = document.getElementsByName('si')[0];
+									var searchInput = document.getElementsByName('word')[0];
+									var searchForm = document.getElementById('search-form');
+
+									siInput.value = siInput.value.replace('http://','');
+
+									searchForm.addEventListener('submit',function(e){
+										if(navigator.userAgent.match(/(iPod|iPhone|iPad)/i)) {
+											/* fix iOS 系统禁止新窗口提交表单 */
+											 searchForm.removeAttribute('target');
+										}
+										searchInput.value += ' '+siInput.value;
+
+										setTimeout(function(){
+											searchInput.value = searchInput.value.replace(' '+siInput.value, '');
+										},1)
+									}, false)
+								</script>
+							</form>
+						{% endif %}
+					{% endif %}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+</aside>
 
 {% if site.disqus_username %}
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{page.id}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
+	/* * * CONFIGURATION VARIABLES * * */
+	var disqus_shortname = "{{site.disqus_username}}";
+	var disqus_identifier = "{{page.id}}";
+	var disqus_url = "{{site.url}}{{page.url}}";
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
 </script>
 <!-- disqus 公共JS代码 end -->
 {% endif %}
@@ -154,35 +229,35 @@ layout: default
 {% if site.anchorjs %}
 <!-- async load function -->
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
+	function async(u, c) {
+	  var d = document, t = 'script',
+		  o = d.createElement(t),
+		  s = d.getElementsByTagName(t)[0];
+	  o.src = u;
+	  if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+	  s.parentNode.insertBefore(o, s);
+	}
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
+	async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+		anchors.options = {
+		  visible: 'always',
+		  placement: 'right',
+		  icon: '#'
+		};
+		anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+	})
 </script>
 <style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
+	/* place left on bigger screen */
+	@media all and (min-width: 800px) {
+		.anchorjs-link{
+			position: absolute;
+			left: -0.75em;
+			font-size: 1.1em;
+			margin-top : -0.1em;
+		}
+	}
 </style>
 {% endif %}
