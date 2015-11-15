@@ -1,14 +1,27 @@
 ---
 layout:     post
-title:      "Hello World"
-subtitle:   " \"Hello World, Hello Blog\""
-date:       2015-01-29 12:00:00
+title:      "Hello 2016"
+subtitle:   " \"Stay Awesome\""
+date:       2015-11-14 23:00:00
 author:     "Beld"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活 - Life
+    - 生活
+    - Life
 ---
 
-> “One year to prepare. ”
+> “Stay Awesome”
 
-Let's see!
+有段时间喜欢吃饭的时候看@serpentza的Youtube频道，每次总会在最后说一句：stay awesome。
+渐渐喜欢上这句话，做很酷的事情，活得精彩，这才是我们应有的生活态度。
+一直觉得做程序员是一件很酷的事情，可是自己却一直没有这感觉。在上课和考试间晃晃度日，学不致用。
+可能与人脱节，没有看到他人一直在做很酷的事情。
+可能眼界太窄，没有看到层出不穷的新想法已经被实现。
+要让自己变得酷起来，其实也很简单，就是做自己想做的事情，那么就从现在开始吧。
+这也是博客诞生的原因之一。
+
+> 出国一年，离毕业一年。
+
+不积跬步，无以至千里。
+虽没有原地踏步，但是离目标还太远。
+鸡血和反思还是需要的，人不能过得太随性。
