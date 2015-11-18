@@ -20,7 +20,7 @@ tags:
 对java也不熟，还搜了dynamic array怎么用，然后发现array是定长，要用ArrayList。
 错了两次才accepted，第一次只把有数值的保存，这样完全丢失了树的结构信息，
 第二次if－else逻辑不清，if里丢了右枝。
-代码如下：
+应该在线直接编辑框里直接码，鉴于不熟就在eclipse里实现了，代码如下：
 
 ```java
 import java.util.ArrayList;
@@ -41,33 +41,33 @@ public class SameTree {
     }
 
     public static void inOrder (TreeNode p, ArrayList al) {
-        if (p != null) {
-        	al.add(p.val);
-        	if (p.left != null) {
-        		inOrder(p.left, al);
-        		inOrder(p.right, al);
-        	} else if (p.right != null) {
-        		al.add(null);
-        		inOrder(p.right,al);
-        	}
+          if (p != null) {
+          al.add(p.val);
+          if (p.left != null) {
+            inOrder(p.left, al);
+            inOrder(p.right, al);
+          } else if (p.right != null) {
+            al.add(null);
+            inOrder(p.right,al);
+          }
         }
         return;
     }
 
     public static void main(String[] args) {
-		    TreeNode p = new TreeNode(1);
-		    TreeNode q = new TreeNode(1);
+      TreeNode p = new TreeNode(1);
+      TreeNode q = new TreeNode(1);
 
-		    p.left = new TreeNode(1);
-		    p.left.right = new TreeNode(1);
+        p.left = new TreeNode(1);
+        p.left.right = new TreeNode(1);
 
-		    q.right = new TreeNode(1);
-		    q.right.right = new TreeNode(1);
+        q.right = new TreeNode(1);
+        q.right.right = new TreeNode(1);
 
-		    System.out.println(isSameTree(p,q));
-		    System.out.println(pal);
-		    System.out.println(qal);
-	}
+        System.out.println(isSameTree(p,q));
+        System.out.println(pal);
+        System.out.println(qal);
+  }
 }
 ```
 
