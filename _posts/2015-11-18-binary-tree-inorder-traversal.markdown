@@ -28,7 +28,7 @@ list是List对象，只能使用ArrayList中实现了继承了List的部分，Ar
 树的遍历一般有递归与迭代两种方法，其实都是将一个复杂的问题分解为一次解决一小部分，最后再把结果拼起来。
 
 
-> 递归 Recursion：
+### 递归 Recursion：
 
 递归将复杂问题一点点分解，直到你能解决为止。
 
@@ -49,7 +49,8 @@ public void helper(TreeNode p, List<Integer> l) {
     }       
 }
 ```
-> 迭代 Iteration
+
+### 迭代 Iteration
 
 一直重复直到任务完成，比如循环计数截止或者链表指针为空。
 这里用栈来模拟递归过程。
@@ -74,7 +75,7 @@ public ArrayList<Integer> inorderTraversal(TreeNode root) {
 
 以上两张方法都是O(n)的时间复杂度（递归本身占用stack空间），空间复杂度则是递归栈的大小，即O(logn)。
 
-> Morris Traversal
+### Morris Traversal
 
 最后还有一种迭代方法，不用栈作为辅助空间，所以空间复杂度为O(1)，即常数空间。
 其实使用了线索二叉树，明天再码。
