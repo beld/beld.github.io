@@ -13,7 +13,7 @@ tags:
     - 树
 ---
 
-  https://leetcode.com/problems/binary-tree-inorder-traversal/
+  [题目链接](https://leetcode.com/problems/binary-tree-inorder-traversal/"Binary Tree Inorder Traversal")
   昨晚直接用了ArrayList去实现树的保存，今天刷这道题时，看到给出的返回类型是List<Integer>，
 不解两者区别，直接new List<Integer>的话就会有\"List is abstract; cannot be instantiated\"
 的错误，google后弄明白List是ArrayList和LinkedList的interface。
