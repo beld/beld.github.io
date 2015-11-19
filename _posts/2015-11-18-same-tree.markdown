@@ -41,22 +41,22 @@ public class SameTree {
     }
 
     public static void inOrder (TreeNode p, ArrayList al) {
-          if (p != null) {
-          al.add(p.val);
-          if (p.left != null) {
-            inOrder(p.left, al);
-            inOrder(p.right, al);
-          } else if (p.right != null) {
-            al.add(null);
-            inOrder(p.right,al);
-          }
+        if (p != null) {
+            al.add(p.val);
+            if (p.left != null) {
+                inOrder(p.left, al);
+                inOrder(p.right, al);
+            } else if (p.right != null) {
+              al.add(null);
+              inOrder(p.right,al);
+            }
         }
         return;
     }
 
     public static void main(String[] args) {
-      TreeNode p = new TreeNode(1);
-      TreeNode q = new TreeNode(1);
+        TreeNode p = new TreeNode(1);
+        TreeNode q = new TreeNode(1);
 
         p.left = new TreeNode(1);
         p.left.right = new TreeNode(1);
@@ -67,7 +67,7 @@ public class SameTree {
         System.out.println(isSameTree(p,q));
         System.out.println(pal);
         System.out.println(qal);
-  }
+    }
 }
 ```
 
