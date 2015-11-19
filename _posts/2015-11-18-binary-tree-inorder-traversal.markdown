@@ -18,15 +18,19 @@ tags:
 不解两者区别，直接new List<Integer>的话就会有\"List is abstract; cannot be instantiated\"
 的错误，google后弄明白List是ArrayList和LinkedList的interface。
 那么下面两种声明方式有什么区别呢？
-```java
-List<Integer> list = new ArrayList<Integer>();
-ArrayList<Integer> aList = new ArrayList<Integer>();
-```
+
+    List<Integer> list = new ArrayList<Integer>();
+    ArrayList<Integer> aList = new ArrayList<Integer>();
+
+
 list是List对象，只能使用ArrayList中实现了继承了List的部分，ArrayList也继承了继承了Serializable Interface，但是list不可以使用。
 
-树树的
+树的遍历一般有递归与迭代两种方法，其实都是将一个复杂的问题分解为一次解决一小部分，最后再把结果拼起来。
 
-> 递归，Recursion：
+
+> 递归 Recursion：
+
+递归将复杂问题一点点分解，直到你能解决为止。
 
 ```java
 public List<Integer> inorderTraversal(TreeNode root) {
@@ -45,9 +49,11 @@ public void helper(TreeNode p, List<Integer> l) {
     }       
 }
 ```
-> 迭代, Iteration
+> 迭代 Iteration
 
-迭代就是用
+一直重复直到任务完成，比如循环计数截止或者链表指针为空。
+这里用栈来模拟递归过程。
+
 ```java
 public ArrayList<Integer> inorderTraversal(TreeNode root) {
   ArrayList<Integer> aList = new ArrayList<Integer>();
@@ -65,3 +71,10 @@ public ArrayList<Integer> inorderTraversal(TreeNode root) {
   return aList;
 }
 ```
+
+以上两张方法都是O(n)的时间复杂度（递归本身占用stack空间），空间复杂度则是递归栈的大小，即O(logn)。
+
+> Morris Traversal
+
+最后还有一种迭代方法，不用栈作为辅助空间，所以空间复杂度为O(1)，即常数空间。
+其实使用了线索二叉树，明天再码。
