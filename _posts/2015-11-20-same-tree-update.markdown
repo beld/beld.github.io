@@ -52,7 +52,8 @@ public boolean isSameTree(TreeNode p, TreeNode q) {
     } else if (p == null || q == null) {
         return false;
     }
-    return (p.val == q.val) && isSameTree(p.left, q.left) && isSameTree(p.right,q.right);
+    return (p.val == q.val) && isSameTree(p.left, q.left)
+                            && isSameTree(p.right,q.right);
 }
 ```
 
@@ -60,14 +61,13 @@ public boolean isSameTree(TreeNode p, TreeNode q) {
 
 用栈来模拟递归，其实也很简单，但是代价就是空间。
 另外，自己写的逻辑虽然没错，但是看上去比较冗余，应该把错误条件都写着前面，然后再进行正确操作。
+
 ```java
 public boolean isSameTree(TreeNode p, TreeNode q) {
     LinkedList<TreeNode> stackP = new LinkedList<TreeNode>();
     LinkedList<TreeNode> stackQ = new LinkedList<TreeNode>();
-
     stackP.push(p);
     stackQ.push(q);
-
     while(!stackP.isEmpty() && !stackQ.isEmpty()) {
         p = stackP.pop();
         q = stackQ.pop();
