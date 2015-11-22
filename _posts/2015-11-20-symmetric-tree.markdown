@@ -46,42 +46,39 @@ public boolean isSymmetricTree(TreeNode left, TreeNode right) {
 
 
 ```java
-public boolean isSameTree(TreeNode p, TreeNode q) {
+public boolean isSymmetric(TreeNode root) {
+    if (root == null) {
+        return true;
+    } else {
+        return isSymmetricTree(root.left, root.right);
+    }
+}
 
-  public boolean isSymmetric(TreeNode root) {
-      if (root == null) {
-          return true;
-      } else {
-          return isSymmetricTree(root.left, root.right);
-      }
-  }
-
-  public boolean isSymmetricTree(TreeNode left, TreeNode right) {
-      LinkedList<TreeNode> stackL = new LinkedList<TreeNode>();
-      LinkedList<TreeNode> stackR = new LinkedList<TreeNode>();
-      stackL.push(left);
-      stackR.push(right);
-      while(!stackL.isEmpty() && !stackR.isEmpty()) {
-          left = stackL.pop();
-          right = stackR.pop();
-          if (left == null) {
-              if (right != null) {
-                  return false;
-              } else continue;
-          } else if (right == null) {
-              return false;
-          } else {
-              if (left.val != right.val) {
-                  return false;
-              } else {
-                  stackL.push(left.left);
-                  stackR.push(right.right);
-                  stackL.push(left.right);
-                  stackR.push(right.left);
-              }
-          }
-      }
-      return true;
-  }
+public boolean isSymmetricTree(TreeNode left, TreeNode right) {
+    LinkedList<TreeNode> stackL = new LinkedList<TreeNode>();
+    LinkedList<TreeNode> stackR = new LinkedList<TreeNode>();
+    stackL.push(left);
+    stackR.push(right);
+    while(!stackL.isEmpty() && !stackR.isEmpty()) {
+        left = stackL.pop();
+        right = stackR.pop();
+        if (left == null) {
+            if (right != null) {
+                return false;
+            } else continue;
+        } else if (right == null) {
+            return false;
+        } else {
+            if (left.val != right.val) {
+                return false;
+            } else {
+                stackL.push(left.left);
+                stackR.push(right.right);
+                stackL.push(left.right);
+                stackR.push(right.left);
+            }
+        }
+    }
+    return true;
 }
 ```
