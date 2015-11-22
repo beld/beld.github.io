@@ -65,6 +65,7 @@ public TreeNode invertTree(TreeNode root) {
 }
 ```
 后来看知乎的时候发现有人贴了代码，其实后三种条件可以合并着写，代码更简洁：
+
 ```java
 public TreeNode invertTree(TreeNode root) {
     if (root != null) {
@@ -81,6 +82,7 @@ public TreeNode invertTree(TreeNode root) {
 #### 非递归，迭代，Iteration
 
 应该没有错，但是一直Time Limit Exceeded，暂时无解。
+
 ```java
 public TreeNode invertTree(TreeNode root) {
     LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
