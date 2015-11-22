@@ -20,6 +20,7 @@ This problem was inspired by this original tweet by Max Howell:
 
 之前看过这条消息，又去知乎看了看他为什么被拒的原因分析，这么牛的人肯定不会因为这么简单一道题被拒。
 书归正传，先来看递归解法。
+
 ```
      4
    /   \
@@ -28,6 +29,7 @@ This problem was inspired by this original tweet by Max Howell:
 1   3 6   9
 ```
 -->
+
 ```
      4
    /   \
@@ -35,6 +37,7 @@ This problem was inspired by this original tweet by Max Howell:
  / \   / \
 9   6 3   1
 ```
+
 #### 递归 Recursion
 
 分析：将左右子树交换后就可以把问题简化成分别对两棵子树再进行翻转。
