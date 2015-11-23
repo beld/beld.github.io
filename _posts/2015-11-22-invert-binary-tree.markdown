@@ -16,6 +16,7 @@ tags:
 [题目链接](https://leetcode.com/problems/invert-binary-tree/)
 
 This problem was inspired by this original tweet by Max Howell:
+
 > Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.
 
 之前看过这条消息，又去知乎看了看他为什么被拒的原因分析，这么牛的人肯定不会因为这么简单一道题被拒。
@@ -84,22 +85,26 @@ public TreeNode invertTree(TreeNode root) {
 
 #### 非递归，迭代，Iteration
 
-应该没有错，但是一直Time Limit Exceeded，暂时无解。
+写的应该没有错，但是一直Time Limit Exceeded，弄了一小时无解。
+看了别人声明用Queue或者Deque然后用LinkedList实例化，换了都没区别。
+最后才发现中间有个地方改代码的时候没把root改为node,就这样睁眼瞎的浪费一小时毫无头绪……
 
 ```java
 public TreeNode invertTree(TreeNode root) {
-    LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+    LinkedList<TreeNode> stack = new LinkedList<>();
     if (root == null) {
     } else {
         TreeNode node = root;
         stack.push(node);
         while(!stack.isEmpty()) {
             node = stack.pop();
-            if (node != null) {
-                TreeNode temp = node.left;
-                node.left = root.right;
-                node.right = temp;
+            TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+            if (node.left != null) {
                 stack.push(node.left);
+            }
+            if (node.right != null) {
                 stack.push(node.right);
             }
         }
