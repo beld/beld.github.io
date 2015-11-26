@@ -31,8 +31,8 @@ According to the definition of LCA on Wikipedia: “The lowest common ancestor i
 
 #### 递归 Recursion
 
-没有看清题目要求是对二叉搜索树进行寻找，其实是忘记二叉搜索树的定义，就写了对所有二叉树的寻找。
-代码如下：
+没有看清题目要求是对二叉搜索树进行寻找，其实是忘记二叉搜索树的定义，就写了对所有二叉树的寻找。但是
+效率极慢，不可行，不过accepted了，代码如下：
 
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
