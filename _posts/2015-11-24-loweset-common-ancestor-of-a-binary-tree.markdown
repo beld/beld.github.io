@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "LeetCode: Lowest Common Ancestor of a Binary Search Tree"
+title:      "LeetCode: Lowest Common Ancestor of a Binary Tree"
 subtitle:   " \"二叉搜索树的最近公共祖先\""
 date:       2015-11-24 02:00:00
 author:     "Beld"

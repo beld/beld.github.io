@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      "LeetCode: Unique Binary Search Trees"
+title:      "LeetCode: Count Complete Tree Nodes"
 subtitle:   " \"二叉搜索树\""
-date:       2015-11-24 02:00:00
+date:       2015-11-26 24:00:00
 author:     "Beld"
 header-img: "img/post-bg-tree.png"
 tags:
