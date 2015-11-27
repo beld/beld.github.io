@@ -66,6 +66,7 @@ private int rightHeight(TreeNode root) {
 
 结果上面的方法依旧超时，计算树高时用的递归，看别人用的while循环就可以通过，就改正了下，ac,代码如下：
 时间复杂度是O(log^2 n)。其实自己并不清楚时间复杂度的计算，需要研究下专门写一篇。
+
 ```java
 public int countNodes(TreeNode root) {
     int leftHeight = 0, rightHeight = 0;
