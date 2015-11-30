@@ -10,8 +10,7 @@ tags:
     - Speech Recognition
 ---
 
-    Currently, I have implemented an iOS app for speech recognition, which is one part of our project for visually impaired skiers to learn skiing.
-I was given a budget up to 300 EUR to buy a microphone for testing the accuracy of speech recognition. The microphone should be lightweight and has the excellent ability of noise and wind canceling.
+Currently, I have implemented an iOS app for speech recognition, which is one part of our project for visually impaired skiers to learn skiing. I was given a budget up to 300 EUR to buy a microphone for testing the accuracy of speech recognition. The microphone should be lightweight and has the excellent ability of noise and wind canceling.
 
 First of all, there is a speech recognition accuracy rating of microphones by Nuance, [Link](http://support.nuance.com/compatibility/Search.asp?PRO=DNS&CID=15), but it was not considering the noise & wind. Besides, some microphones are too expensive and this rating is a little bit out of date. Since I actually have no knowledge of microphones before, the most intuitive way is to watch the test videos. I chose two from the list with noise cancellation and wind suppression, namely *VXi VoxStar™ UC* and *Plantronics Voyager Legend Pro*, and another one, *SpeechWare FlexyMike Dual Ear Cardioid*.
 
@@ -30,3 +29,5 @@ It claims having the best noise & wind canceling. The Product page is [link](htt
 #### SpeechWare FlexyMike Dual Ear Cardioid
 This one was highly recommended by [SpeechRecSolutions](SpeechRecSolutions.com) and claimed to have the highest accuracy. The technical details about it: [Product Review: SpeechWare FlexyMike Dual Ear Cardioid](http://www.speechrecsolutions.com/assets/productreviews/SpeechWare_FMKDEC_review.pdf).
 There is an very impressive test video: [SpeechWare FlexyMike & USB Adapter at Niagara Falls](https://www.youtube.com/watch?v=Ad5DUK8nkdk). I highly recommend you to watch it. And its price is $196.00 and only available in US amazon.
+
+![Alt text](http://core0.staticworld.net/images/article/2014/09/flexymike-dec-100411863-gallery.jpg)
