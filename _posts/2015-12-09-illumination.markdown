@@ -4,7 +4,7 @@ title:      "Illumination"
 subtitle:   ""
 date:       2015-12-09 23:30:00
 author:     "Beld"
-header-img: "img/post-bg-cv.jpg"
+header-img: "img/post-bg-cv.png"
 tags:
     - Computer Vision
 ---
