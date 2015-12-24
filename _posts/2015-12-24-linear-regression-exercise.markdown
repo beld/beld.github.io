@@ -41,7 +41,7 @@ x = [ones(m, 1), x]; % Add a column of ones to x
 the linear regression model is
 <center>$$h_{\theta}(x) = \theta^Tx = \sum_{i=0}^n \theta_i x_i, \nonumber$$</center>
 and the batch gradient descent update rule is
-<center>$$\theta _{ j }:=\theta _{ j }-\alpha \frac { 1 }{ m } \sum _{ i=1 }^{ m } (h_{ \theta }(x^{(i)})-y^{(i)}) x_{ j }^{ (i) }$$  (for all $$j$$)</center>
+<center>$$\theta _{ j }:=\theta _{ j }-\alpha \frac { 1 }{ m } \sum _{ i=1 }^{ m } (h_{ \theta }(x^{(i)})-y^{(i)}) x_{ j }^{ (i) }$$ \;\;\;\; (for \quad all \quad $$j$$)</center>
 
 Implement gradient descent using a learning rate of $$\alpha = 0.07$$. Since Matlab index vectors starting from 1 rather than 0, you'll probably use theta(1) and theta(2) in Matlab/Octave to represent $$\theta_0$$ and $$\theta_1$$.
 Continue running gradient descent for 1500 iterations until $\theta$ converges. After convergence, record the final values of $$\theta_0$$ and $$\theta_1$$.
