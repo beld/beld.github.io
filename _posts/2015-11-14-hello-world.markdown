@@ -6,7 +6,6 @@ date:       2015-11-14 23:00:00
 author:     "Beld"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活
     - Life
 ---
 

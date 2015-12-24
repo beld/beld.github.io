@@ -6,11 +6,8 @@ date:       2015-11-24 02:00:00
 author:     "Beld"
 header-img: "img/post-bg-tree.png"
 tags:
-    - 算法
-    - Algorithm
     - LeetCode
-    - Tree
-    - 树
+
 ---
 
 [题目链接](https://leetcode.com/problems/unique-binary-search-trees/)

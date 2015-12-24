@@ -15,7 +15,7 @@ tags:
 损失函数就是用来度量模型的拟合程度。
 
 ##### Classification
-对分类问题来讲，可以非常直观地通过$$y⋅f=y⋅{ θ }^{ T }x>0$$为正确，$$y⋅f=y⋅{ θ }^{ T }x>0$$为错误来判断。
+对分类问题来讲，可以非常直观地通过$$y⋅f=y⋅{ θ }^{ T }x>0$$为正确，$$y⋅f=y⋅{ θ }^{ T }x<0$$为错误来判断。
 
 **0/1 Loss**: $$ { min }_{ θ }\sum_{ i }{ { L }_{ 0/1 } } \left( { θ }^{ T }x \right) $$.
 Non convex and very hard to optimize.

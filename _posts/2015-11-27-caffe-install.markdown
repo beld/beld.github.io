@@ -6,11 +6,9 @@ date:       2015-11-29 23:00:00
 author:     "Beld"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活
-    - Life
+    - Caffe
 ---
 
->This is an empty article, waiting to be finished
 
 Error lists:
 

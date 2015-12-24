@@ -6,11 +6,7 @@ date:       2015-11-18 00:30:00
 author:     "Beld"
 header-img: "img/post-bg-tree.png"
 tags:
-    - 算法
-    - Algorithm
     - LeetCode
-    - Tree
-    - 树
 ---
 
 今天开刷LeetCode，决定从树开始做，找了最简单的相同树判定。
