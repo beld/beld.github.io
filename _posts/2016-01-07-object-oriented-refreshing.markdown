@@ -80,12 +80,12 @@ Operations on generic types are called generic operations: add() and get()
 The signature is used to decide which of the possible operations is meant by a particular instance of that name  
 The compiler makes the decision.  
 
-**Binding**  
+#### **Binding**  
 － **Binding**: establishes the mappings between names and data objects and their descriptions
 － **Early Binding (Static binding, at compile time)**: The premature choice of operation variant, resulting in possibly wrong results and (in favorable cases) run-time system crashes   
 － **Late Binding (Dynamic binding, at run time)**: The guarantee that every execution of an operation will select the correct version of the operation, based on the type of the operation’s target.  
 
-**Delegation**  
+#### **Delegation**  
 A mechanism for code reuse in which an operation resends a message to another class to accomplish the desired behavior.   
 Delegation simply involves passing a method call to another object, transforming the input if necessary.  
 Delegation extends the behavior of an object.  
