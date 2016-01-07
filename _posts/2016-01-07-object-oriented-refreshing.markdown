@@ -13,18 +13,17 @@ tags:
 
 ##### From Phenomena and Concepts to Abstraction and Modeling
 
-Phenomenon: An object in the world of a domain as you perceive <br />
-Concept: Describes the common properties of phenomena, 3-tuple: name, purpose and members <br />
-Abstraction: Classification of phenomena into concepts <br />
-Modeling: Development of abstractions to answer specific questions about a set of phenomena while ignoring irrelevant details <br />
+Phenomenon: An object in the world of a domain as you perceive  
+Concept: Describes the common properties of phenomena, 3-tuple: name, purpose and members  
+Abstraction: Classification of phenomena into concepts  
+Modeling: Development of abstractions to answer specific questions about a set of phenomena while ignoring irrelevant details  
 
-Type: A concept in the context of programming languages <br />
-Instance: A member of a specific type <br />
+Type: A concept in the context of programming languages  
+Instance: A member of a specific type  
 Classes:
-- A complex type is represented by a *class* <br />
-- A class is a code template for a concept, that is used to create *instances* of that concept <br />
-
-Objects: An *instance of a class* at runtime is called Object <br />
+- A complex type is represented by a *class*
+- A class is a code template for a concept, that is used to create *instances* of that concept
+Objects: An *instance of a class* at runtime is called Object
 
 ##### Four Features of Object-oriented Programming Languages
 - Abstraction
@@ -32,16 +31,16 @@ Objects: An *instance of a class* at runtime is called Object <br />
 - Encapsulation
 - Polymorphism
 
-Abstraction: Creating a model of the problem in terms of classes and the relationships between them <br />
-Encapsulation: Objects are self-contained set of data and behavior; An object can determine which part of its data and behavior is exposed to the outer world <br />
+Abstraction: Creating a model of the problem in terms of classes and the relationships between them  
+Encapsulation: Objects are self-contained set of data and behavior; An object can determine which part of its data and behavior is exposed to the outer world  
 
 #### Coupling and Cohesion
 - Coupling: Measures the dependencies between subsystems
 - Cohesion: Measures the dependencies among classes within a subsystem
-- Low coupling: <br />
-•  The subsystems should be as independent of each other as possible <br />
-•  A change in one subsystem should not affect any other subsystem
-- High cohesion: <br />
+- Low coupling:  
+•  The subsystems should be as independent of each other as possible  
+•  A change in one subsystem should not affect any other subsystem  
+- High cohesion:  
 •  A subsystem should only contain classes which depend heavily on each other.
 
 What makes good design?
