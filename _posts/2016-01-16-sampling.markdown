@@ -43,7 +43,7 @@ tags:
 - 找到建议密度（Proposal Density）$$q(x)$$和常数M，使得
   - 对$$q(x)$$采样比较容易
   - $$q(x)$$的形状接近$$π(x)$$，且 $$\pi \left( x \right) \le Mq\left( x \right) ,\forall x$$
-![  ](http://i4.tietuku.com/b51492678e07b61d.png)
+![  ](http://i4.tietuku.com/b51492678e07b61d.png =386x245)
 - 采样过程 ［包络原则］
   - 1. 产生样本$$X\~ q\left( x \right)$$和$$U\sim Uniform\left[ 0,1 \right] $$
   - 2. 若$$U\le \pi \left( X \right) /Mq\left( X \right) $$， 则接受。
@@ -64,7 +64,7 @@ tags:
 
 ###### Markov Chain  马尔可夫链
 - 马尔科夫链可以用状态转换图来表示
-![  ](http://i8.tietuku.com/6c7a5575d2eac002.png)
+![  ](http://i8.tietuku.com/6c7a5575d2eac002.png =303x251)
 - 对一个马尔科夫链来说，未来状态只与当前t时刻有关，而与t时刻之前的历史状态无关（条件独立）
 - 在这里我们只考虑每步转换概率相等的齐次马尔可夫链(homogeneous Markov chains)
 - 马尔科夫链的一个很重要的性质是平稳分布(Stationary Distribution)。简单的说，主要统计性质不随时间而变的马尔科夫链就可以认为是平稳的。数学上有马氏链收敛定理，当步长n足够大时，一个非周期且任意状态联通的马氏链可以收敛到一个平稳分布π(x)。这个定理就是所有的MCMC方法的理论基础。
@@ -78,7 +78,7 @@ tags:
 通常条件下，细致平稳条件是不成立的。不过，我们可以对其做一个改造，引入一个函数$$\alpha \left( i,j \right)$$，满足 $$0≤α(i,j)≤1$$，使得
 <center>$${ \pi  }_{ i }{ A }_{ ij }\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }\alpha \left( j,i \right)$$</center>
 那么，如何取得$$\alpha \left( i,j \right)$$呢？最简单的，依照对称性，我们可以取
-<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }$$，$${ \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$</center>
+<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }, { \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$</center>
 这样就得到了新的具有平稳分布性质的马尔可夫链。
 
 这里的$$\alpha \left( i,j \right)$$叫做接受率。如果接受率过小，会导致马氏链过多地拒绝状态转移，这样马氏链的收敛速度会很慢。因此，我们可以考虑放大$$\alpha \left( i,j \right)$$，使得方程中两个接受率中，最大的取1.这样拒绝率就可以表示为：
