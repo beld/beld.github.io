@@ -76,13 +76,13 @@ tags:
 > MCMC方法最早由Metropolis（1954）给出，后来Metropolis的算法由Hastings改进，合称为M-H算法。M-H算法是MCMC的基础方法。由M-H算法演化出了许多新的抽样方法，包括目前在MCMC中最常用的Gibbs抽样也可以看做M-H算法的一个特例。
 
 通常条件下，细致平稳条件是不成立的。不过，我们可以对其做一个改造，引入一个函数$$\alpha \left( i,j \right)$$，满足 $$0≤α(i,j)≤1$$，使得
-<center>$${ \pi  }_{ i }{ A }_{ ij }\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }\alpha \left( j,i \right)$$
+<center>$${ \pi  }_{ i }{ A }_{ ij }\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }\alpha \left( j,i \right)$$</center>
 那么，如何取得$$\alpha \left( i,j \right)$$呢？最简单的，依照对称性，我们可以取
-<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }$$，<center>$${ \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$
+<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }$$，<center>$${ \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$</center>
 这样就得到了新的具有平稳分布性质的马尔可夫链。
 
 这里的$$\alpha \left( i,j \right)$$叫做接受率。如果接受率过小，会导致马氏链过多地拒绝状态转移，这样马氏链的收敛速度会很慢。因此，我们可以考虑放大$$\alpha \left( i,j \right)$$，使得方程中两个接受率中，最大的取1.这样拒绝率就可以表示为：
-<center>$$α(i,j)=min\left(1,π(j)p(j,i)/π(i)p(i,j) \right)$$
+<center>$$α(i,j)=min\left(1,π(j)p(j,i)/π(i)p(i,j) \right)$$</center>
 这就是M-H算法。 我们的讨论都是针对离散状态的，对连续状态的马尔科夫链依然有相同的结果。在连续状态中表示状态转移概率的项用条件概率密度代替，称为转移核。
 
 M-H算法的步骤：
