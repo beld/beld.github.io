@@ -78,7 +78,7 @@ tags:
 通常条件下，细致平稳条件是不成立的。不过，我们可以对其做一个改造，引入一个函数$$\alpha \left( i,j \right)$$，满足 $$0≤α(i,j)≤1$$，使得
 <center>$${ \pi  }_{ i }{ A }_{ ij }\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }\alpha \left( j,i \right)$$</center>
 那么，如何取得$$\alpha \left( i,j \right)$$呢？最简单的，依照对称性，我们可以取
-<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }$$，<center>$${ \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$</center>
+<center>$$\alpha \left( i,j \right)={ \pi  }_{ j }{ A }_{ ji }$$，$${ \pi  }_{ i }{ A }_{ ij }=\alpha \left( j,i \right)$$</center>
 这样就得到了新的具有平稳分布性质的马尔可夫链。
 
 这里的$$\alpha \left( i,j \right)$$叫做接受率。如果接受率过小，会导致马氏链过多地拒绝状态转移，这样马氏链的收敛速度会很慢。因此，我们可以考虑放大$$\alpha \left( i,j \right)$$，使得方程中两个接受率中，最大的取1.这样拒绝率就可以表示为：
