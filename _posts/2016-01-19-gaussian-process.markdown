@@ -74,7 +74,7 @@ end
 x = (-1:0.005:1);
 n = length(x);
 ```
-- 计算协方差矩阵$$K$$：$$K_ij=k(\textbf{x}_{i}^{*},\textbf{x}_{j}^{*})  
+- 计算协方差矩阵$$K$$：$$K_ij=k(\textbf{x}_{i}^{*},\textbf{x}_{j}^{*})$$
 
 ```
 C = zeros(n,n);
@@ -114,9 +114,9 @@ plot(x,z,'.-');
 
 ###### 用高斯过程来分类预测
 我们的目标就是计算出预测分布：
-<center>$$p(y_{*}=+1|X,\textbf{y},\textbf{x_{*}}) = \int p(y_{*}|f_*)p(f_{*}|X,\textbf{y},\textbf{x}_*)) df_*$$</center>
+<center>$$p(y_{*}=+1|X,\textbf{y},\textbf{x}_*) = \int p(y_{*}|f_*)p(f_{*}|X,\textbf{y},\textbf{x}_*)) df_*$$</center>
 其中$$f^{*}$$是latent function, $$p(y_{*}|f_*)$$就是一个sigmoid函数。然后在训练集上，我们对所有的latent variables边缘化就得到：
-<center>$$p(f_{*}|X,\textbf{y},\textbf{x_{*}}) = \int p(f_{*}|X,\textbf{x}_*),,\textbf{f}) p(\textbf{f}|X,\textbf{y})df$$</center>
+<center>$$p(f_{*}|X,\textbf{y},\textbf{x}_*) = \int p(f_{*}|X,\textbf{x}_*),,\textbf{f}) p(\textbf{f}|X,\textbf{y})df$$</center>
 最后，我们需要计算所有latent variables的后验概率：
 <center>$$p({ \textbf{f} }|X,{ \textbf{y} })=\frac { p (\textbf{y} | \textbf{f}) p(\textbf{f} | X)}{ p(\textbf{y} | X) } $$</center>
 其中，$$p (\textbf{y} | \textbf{f})$$是likelihood似然也就是sigmoid函数，$$p(\textbf{f} | X)$$是prior先验概率，$$p(\textbf{y} | X)$$是normalizer。
