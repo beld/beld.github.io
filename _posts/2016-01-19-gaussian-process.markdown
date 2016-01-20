@@ -41,9 +41,78 @@ tags:
 ##### Gaussian Process 高斯过程
 我们考虑了形式为$$y(x, w) = w^T\phi(x)$$线性回归模型，其中$$w$$是一个参数向量，$$ϕ(x)$$是一个与输入向量$$x$$相关的固定非线性基函数向量。我们证明了，$$w$$上的先验分布会产生函数$$y(x,w)$$上的一个对应的先验分布。给定一个训练数据集，我们计算$$w$$上的后验概率分布，从而就得到和回归函数的对应的后验概率分布。回归函数反过来（叠加上噪声）表示了对新输入向量$$x$$的一个预测分布$$p(t|x)$$。  
 在高斯过程的观点中，我们抛弃参数模型，直接定义函数上的先验概率分布。乍一看来，在函数组成的不可数的无穷空间中对概率分布进行计算似乎很困难。但是，对于一个有限的训练数据集，我们只需要考虑训练数据集和测试数据集的输入$$x_n$$处的函数值即可，因此在实际应用中我们可以在有限的空间中进行计算。
+###### 定义
 通常来说，高斯过程被定义为函数y(x)上的一个概率分布，使得在任意点集$$x_1,...,x_N$$处计算的$$y(x)$$的值的集合联合起来服从高斯分布。也就是说，高斯过程是一个随机变量的集合，使得这个集合任意有限部分都有一个联合高斯分布。这个集合中随机变量的数量可以是无限的。高斯随机过程的一个关键点是$$N$$个变量$$y_1,...,y_N$$上的联合概率分布完全由二阶统计（即均值和协方差）确定。在大部分应用中，我们关于$$y(x)$$的均值没有任何先验的知识，因此根据对称性，我们令其等于零。这等价于基函数的观点中，令权值$$p(w|α)$$的先验概率分布的均值等于0。之后，高斯过程的确定通过给定两个$$x$$处的函数值$$y(x)$$的协方差来完成。这个协方差由核函数确定
 <center>$$\mathbb{E}[y(x_n)y(x_m)] = k(x_n,x_m) \tag{6.55}$$</center>
-如何解决无穷问题？基本思想就是将无穷的随机变量集合分为一个无穷子集和一个有限子集。
-<center>$$x=\left( \begin{matrix} { x }_{ f } \\ { x }_{ i } \end{matrix} \right) \sim { N }\left( \left( \begin{matrix} { \mu  }_{ f } \\ { \mu  }_{ i } \end{matrix} \right) ,\left( \begin{matrix} { \Sigma  }_{ f } & { \Sigma  }_{ fi } \\ { \Sigma  }_{ if } & { \Sigma  }_{ i } \end{matrix} \right)  \right) $$</center>
+
+###### 如何解决无穷问题？
+基本思想就是将无穷的随机变量集合分为一个无穷子集和一个有限子集。
+<center>$$x=\left( \begin{matrix} { x }_{ f } \\ { x }_{ i } \end{matrix} \right) \sim \mathcal{N}\left( \left( \begin{matrix} { \mu  }_{ f } \\ { \mu  }_{ i } \end{matrix} \right) ,\left( \begin{matrix} { \Sigma  }_{ f } & { \Sigma  }_{ fi } \\ { \Sigma  }_{ if } & { \Sigma  }_{ i } \end{matrix} \right)  \right) $$</center>
 然后通过边缘性质，我们可以得到
 <center>$$p(x_f)= \int { p(x_f,x_i)} d x_i = \mathcal{N}(x_f| \mu_f, \Sigma_f)$$</center>
+###### 高斯过程采样
+和对高斯分布进行采样一样，我们也可以对一个高斯过程进行采样，不过得到的每一个样本都是一个函数。过程如下：
+
+0. 选择核函数(协方差函数)，其均值函数默认为常量0.
+```
+kernel = 6;
+switch kernel
+    case 1; k = @(x,y) 1*x'*y; %Linear
+    case 2; k = @(x,y) 1*min(x,y); % Brownian  
+    case 3; k = @(x,y) exp(-100*(x-y)'*(x-y)); %squared exponential
+    case 4; k = @(x,y) exp(-1*sqrt((x-y)'*(x-y))); %Ornstein-Uhlenbeck
+    case 5; k = @(x,y) exp(-1*sin(5*pi*(x-y)).^2); %A periodic GP
+    case 6; k = @(x,y) exp(-100*min(abs(x-y),abs(x+y)).^2); %A symmetric GP
+end
+```
+1. 选择一部分输入点$$\textbf{x}_{1}^{*},...,\textbf{x}_{M}^{*}$$
+```
+x = (-1:0.005:1);
+n = length(x);
+```
+2. 计算协方差矩阵$$K$$：$$K_ij=k(\textbf{x}_{i}^{*},\textbf{x}_{j}^{*})
+```
+C = zeros(n,n);
+for i = 1:n
+    for j = 1:n
+        C(i,j) = k(x(i),x(j));
+    end
+end
+```
+3. 产生一个随机高斯向量：$$\textbf{y}_*=\mathcal{N}(\textbf{0},K)$$
+```
+rn = randn(n,1);%产生n个0~1之间的随机数,满足正态分布
+[u,s,v] = svd(C); %svd分解rn矩阵，s为奇异值矩阵，u为奇异向量.C=usv'
+z = u*sqrt(s)*rn; %z为什么这么表示,理论是？？
+```
+4. 画出对应的点集
+```
+figure(1);hold on; clf
+plot(x,z,'.-');
+% axis([0,1,-2,2]);
+```
+
+![](https://mqshen.gitbooks.io/prml/content/Chapter6/gaussian/images/gaussian_processes.png)
+###### 用高斯过程来回归预测
+给定一些输入数据，我们可以用高斯过程来预测新的函数值。假定我们有训练数据$$\textbf{x}_1,...,\textbf{x}_N, \quad \textbf{y}_1,...,\textbf{y}_N$$ 和测试数据 $$\textbf{x}_{1}^{*},...\textbf{x}_{M}^{*}$$。那么联合概率就可以表示为
+<center>$$\left( \begin{matrix} \textbf{y} \\ { \textbf{y} }_{ * } \end{matrix} \right) \sim { N }\left( \textbf{0},\left( \begin{matrix} K(X,X) & { K(X,X }_{ * }) \\ K({ X }_{ * },X) & { K(X }_{ * },{ X }_{ * }) \end{matrix} \right)  \right) $$</center>
+然后我们需要计算$$p(\textbf{y}^{*}|\textbf{x}^{*},X,\textbf{y})$$。对于单个测试点的情况，我们可以推导出预测分布Predictive Distribution，在此略过。
+###### 分类的高斯过程
+在分类的概率方法中，我们的目标是在给定一组训练数据的情况下，对于一个新的输入向量，为目标变量的后验概率建模。这些概率一定位于区间(0,1)中，而一个高斯过程模型做出的预测位于整个实数轴上。然而，我们可以很容易地通过使用一个恰当的非线性激活函数，将高斯过程的输出进行变换来调整高斯过程，使其能够处理分类问题。  
+首先考虑一个二分类问题，它的目标变量为$$t \in \{0, 1\}$$。如果我们定义函数a(x)上的一个高斯过程，然后使用logistic sigmoid函数y=σ(a)进行变换（或者用cumulative Gaussian），那么我们就得到了函数y(x)上的一个非高斯随机过程，其中$$y∈(0,1)$$。但是，与回归不同的是，目标变量t上的概率分布是伯努利分布：
+<center>$$p(t|a) = \sigma(a)^t(1-\sigma(a))^{1-t} \tag{6.73}$$</center>
+![高斯过程先验的样本与logistic sigmoid变幻](https://mqshen.gitbooks.io/prml/content/Chapter6/gaussian/images/classification.png)
+###### 用高斯过程来分类预测
+我们的目标就是计算出预测分布：
+<center>$$p(y_{*}=+1|X,\textbf{y},\textbf{x_{*}}) = \int p(y_{*}|f_*)p(f_{*}|X,\textbf{y},\textbf{x}_*)) df_*$$</center>
+其中$$f^{*}$$是latent function,$$p(y_{*}|f_*)$$就是一个sigmoid函数。然后在训练集上，我们对所有的latent variables边缘化就得到：
+<center>$$p(f_{*}|X,\textbf{y},\textbf{x_{*}}) = \int p(f_{*}|X,\textbf{x}_*),,\textbf{f}) p(\textbf{f}|X,\textbf{y})df$$</center>
+最后，我们需要计算所有latent variables的后验概率：
+<center>$$p({ \textbf{f} }|X,{ \textbf{y} })=\frac { p (\textbf{y} | \textbf{f}) p(\textbf{f} | X)}{ p(\textbf{y} | X) } $$</center>
+其中，$$p (\textbf{y} | \textbf{f})$$是likelihood似然也就是sigmoid函数，$$p(\textbf{f} | X)$$是prior先验概率，$$p(\textbf{y} | X)$$是normalizer。
+
+但是，似然项并不是一个高斯，这意味着我们不能用closed form计算后验。这里有不同的解决办法：
+
+1. 拉普拉斯近似 Laplace approximation
+2. Expectation Propagation
+3. Variational methods
