@@ -97,7 +97,7 @@ $$K$$均值算法的一个值得注意的特征是，在每一次迭代中，每
 <center>$$0 = \sum_{n=1}^N\frac{\mathcal{N}(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_j\mathcal{N}(x_n|\mu_j,\Sigma_j)} + \lambda $$</center>
 注意，如果我们将两边乘以$$π_i$$，然后利用限制条件对$$K$$个$$π_i$$求和，交换左边的求和顺序，我们会发现$$λ=−N$$。使用这个结果消去$$λ$$，可得
 <center>$$\pi_k = \frac{N_k}{N}$$</center>
-从而第k个分量的混合系数为那个分量对于解释数据点的“责任”的平均值。
+从而第$$k$$个分量的混合系数为那个分量对于解释数据点的“责任”的平均值。
 
 虽然这些结果并没有给出混合模型参数的一个解析解，然而，这些结果确实给出了一个简单的迭代方法来寻找问题的最大似然解。这个迭代过程是EM算法应用于高斯混合模型的一个实例。我们首先为均值、协方差、混合系数选择一个初始值。然后，我们交替进行两个更新，被称为E步骤和M步骤。在期望E步骤中，我们使用参数的当前值计算公式给出的后验概率（也被称为“责任”）。然后，我们将计算出的概率用于最大化M步骤中，重新估计均值、方差和混合系数。注意，在进行这一步骤时，我们首先计算新的均值，然后使用新的均值找到协方差。我们稍后会证明，每次通过E步骤和接下来的M步骤对参数的更新确保了对数似然函数的增大。在实际应用中，当对数似然函数的变化量或者参数的变化量低于某个阈值时，我们就认为算法收敛。
 
@@ -107,15 +107,16 @@ $$K$$均值算法的一个值得注意的特征是，在每一次迭代中，每
 
 1. 初始化均值$$μ_k$$、协方差$$Σ_k$和混合系数$$π_k$$，计算对数似然函数的初始值。
 2. E步骤。使用当前参数值计算“责任”。
-<center>$$\gamma(z_{nk}) = \frac{\pi_k\mathcal{N}(x_n|\mu_k,\Sigma_k)}{\sum\limits_{j=1}^K\pi_j\mathcal{N}(x_n|\mu_j,\Sigma_j)} $$</center>
+    <center>$$\gamma(z_{nk}) = \frac{\pi_k\mathcal{N}(x_n|\mu_k,\Sigma_k)}{\sum\limits_{j=1}^K\pi_j\mathcal{N}(x_n|\mu_j,\Sigma_j)} $$</center>
 3. M步骤。使用当前的“责任”重新估计参数。
-\begin{eqnarray}
-\mu_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})x_n \tag{9.24} \\
-\Sigma_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})(x_n - \mu_k^{new})(x_n - \mu_k^{new})^T \tag{9.25} \\
-\pi_k^{new} &=& \frac{N_k}{N} \tag{9.26}
-\end{eqnarray}
-其中
-<center>$$N_k = \sum\limits_{n=1}^N\gamma(z_{nk}) $$</center>
+
+    \begin{eqnarray}
+    \mu_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})x_n \tag{9.24} \\
+    \Sigma_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})(x_n - \mu_k^{new})(x_n - \mu_k^{new})^T \tag{9.25} \\
+    \pi_k^{new} &=& \frac{N_k}{N} \tag{9.26}
+    \end{eqnarray}
+    其中
+    <center>$$N_k = \sum\limits_{n=1}^N\gamma(z_{nk}) $$</center>
 4. 计算对数似然函数
-<center>$$\ln p(X|\mu,\Sigma,\pi) = \sum\limits_{n=1}^N\ln\left\{\sum\limits_{k=1}^K\pi_k\mathcal{N}(x_n|\mu_k,\Sigma_k)\right\} $$</center>
-检查参数或者对数似然函数的收敛性。如果没有满足收敛的准则，则返回第2步。
+    <center>$$\ln p(X|\mu,\Sigma,\pi) = \sum\limits_{n=1}^N\ln\left\{\sum\limits_{k=1}^K\pi_k\mathcal{N}(x_n|\mu_k,\Sigma_k)\right\} $$</center>
+    检查参数或者对数似然函数的收敛性。如果没有满足收敛的准则，则返回第2步。
