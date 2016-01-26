@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Mixture Models and Expectation Maximization 混合模型及EM"
+title:      "K-means聚类与混合模型及EM算法"
 subtitle:   ""
 date:       2016-01-24 23:30:00
 author:     "Beld"
@@ -64,13 +64,6 @@ $$K$$均值算法的一个值得注意的特征是，在每一次迭代中，每
 \end{eqnarray}
 我们将$$π_k$$看成$$z_k=1$$的先验概率，将$$γ(z_k)$$看成观测到$$x$$之后，对应的后验概率。
 
-\begin{eqnarray}
-\mu_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})x_n \\
-\Sigma_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})(x_n - \mu_k^{new})(x_n - \mu_k^{new})^T  \\
-\pi_k^{new} &=& \frac{N_k}{N}
-\end{eqnarray}
-
-
 ##### 最大似然的问题
 假设我们有一个观测的数据集$$\{x_1,...,x_N\}$$，我们希望使用混合高斯模型来对数据进行建模。如果我们假定数据点独立地从概率分布中抽取，这个独立同分布数据集的高斯混合模型的对数似然函数为
 <center>$$\ln p(X|\pi,\mu,\Sigma) = \sum\limits_{n=1}^N\ln\left\{\sum\limits_{k=1}^K\pi_k\mathcal{N}(x_n|\mu_k,\Sigma_k)\right\}$$</center>
@@ -118,9 +111,9 @@ $$K$$均值算法的一个值得注意的特征是，在每一次迭代中，每
 3. M步骤。使用当前的“责任”重新估计参数。
 
     \begin{eqnarray}
-    \mu_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})x_n \tag{9.24} \\
-    \Sigma_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})(x_n - \mu_k^{new})(x_n - \mu_k^{new})^T \tag{9.25} \\
-    \pi_k^{new} &=& \frac{N_k}{N} \tag{9.26}
+    \mu_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})x_n \\
+    \Sigma_k^{new} &=& \frac{1}{N_k}\sum\limits_{n=1}^N\gamma(z_{nk})(x_n - \mu_k^{new})(x_n - \mu_k^{new})^T  \\
+    \pi_k^{new} &=& \frac{N_k}{N}
     \end{eqnarray}
     其中
     <center>$$N_k = \sum\limits_{n=1}^N\gamma(z_{nk}) $$</center>
