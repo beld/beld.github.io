@@ -32,11 +32,12 @@ Radiance ［辐射］:
 - 吐槽2: 想维基中foreshortened对应的翻译，结果发现perspective projection，perspective，foreshortening统统跳到了只有几行的透视投影页面。
 
 
-Irradiance ［辐照］:
+Irradiance ［辐照度］:
 - Measure How much light is arriving at a surface?
 - a function of incoming angle
 - Definition: *Incident power per unit area not foreshortened*
 - Crucial property: Total power arriving at the surface is given by adding irradiance over all incoming angles.
+
 
 surfaces:
 - Many effects when a light strikes a surface: absorbed, transmitted, reflected, scattered

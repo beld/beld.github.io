@@ -1,0 +1,17 @@
+---
+layout:     post
+title:      "Stereo 立体成像"
+subtitle:   ""
+date:       2016-01-19 01:30:00
+author:     "Beld"
+header-img: "img/post-bg-engineer.jpg"
+tags:
+    - Computer Vision
+---
+
+获取场景中个点相对于摄像机的距离是计算机视觉系统的重要任务之一。场景中个点相对于摄像机的距离可以用深度图Depth Map来表示，即深度图每一个像素值表示场景中某一点与摄像机之间的距离。最一般的方法是使用两个相隔一定距离的摄像机同时获取场景图像来生成深度图。
+
+#### Stereo 立体成像
+
+
+    

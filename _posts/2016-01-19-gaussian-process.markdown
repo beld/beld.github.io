@@ -4,7 +4,7 @@ title:      "Kernel Methods and Gaussian Process 核与高斯过程"
 subtitle:   ""
 date:       2016-01-19 22:30:00
 author:     "Beld"
-header-img: "img/post-bg-engineer.jpg"
+header-img: "img/post-bg-ml.png"
 tags:
     - Machine Learning
 ---

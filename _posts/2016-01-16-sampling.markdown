@@ -4,7 +4,7 @@ title:      "随机采样方法"
 subtitle:   "Sampling"
 date:       2016-01-16 20:30:00
 author:     "Beld"
-header-img: "img/post-bg-engineer.jpg"
+header-img: "img/post-bg-ml.png"
 tags:
     - Machine Learning
 ---
