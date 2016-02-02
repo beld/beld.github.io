@@ -42,12 +42,12 @@ tags:
 <center>$$p(x) = \prod\limits_{s \in ne(x)}F_s(x,X_s)$$</center>
 其中$$ne(x)$$表示与$$x$$相邻的因子结点的集合，$$X_s$$表示子树中通过因子结点$$f_s$$与变量结点$$x$$相连的所有变量的集合，$$F_s(x,X_s)$$表示分组中与因子$$f_s$$相关联的所有因子的乘积。
 交换加和与乘积的顺序，我们有
-$$
+<center>$$
 \begin{eqnarray}
 p(x) = \prod\limits_{s \in ne(x)}\left[\sum\limits_{X_s}F_s(x,X_s)\right] \\
 = \prod\limits_{s \in ne(x)}\mu_{f_s \to x}(x)
 \end{eqnarray}
-$$
+$$</center>
 函数$$μ_{f_s}→x(x)$$可以被看做从因子结点$$f_s$$到变量结点$$x$$的信息（message）。我们看到，需要求解的边缘概率分布$$p(x)$$等于所有到达结点$$x$$的输入信息的乘积。
 
 我们注意到每个因子$$F_s(x,X_s)$$由一个因子（子）图，因此本身可以被分解。
@@ -61,7 +61,7 @@ $$
 它的未标准化联合概率分布为
 <center>$$\tilde{p}(x) = f_a(x_1,x_2)f_b(x_2,x_3)f_c(x_2,x_4)$$</center>
 让我们令结点$$x_3$$为根结点，此时有两个叶结点$$x_1$$,$$x_4$$。从叶结点开始，我们有
-$$
+<center>$$
 \begin{eqnarray}
 \mu_{x_1 \to f_a}(x_1) = 1  \\
 \mu_{f_a \to x_2}(x_2) = \sum\limits_{x_1}f_a(x_1, x_2)  \\
@@ -70,9 +70,9 @@ $$
 \mu_{x_2 \to f_b}(x_2) = \mu_{f_a \to x_2}(x_2)\mu_{f_c \to x_2}(x_2)  \\
 \mu_{f_b \to x_3}(x_3) = \sum\limits_{x_2}f_b(x_2, x_3)\mu_{x_2 \to f_b}(x_2)
 \end{eqnarray}
-$$
+$$</center>
 一旦信息传播完成，我们就可以将信息从根结点传递到叶结点，这些信息为
-$$
+<center>$$
 \begin{eqnarray}
 \mu_{x_3 \to f_b}(x_3) = 1  \\
 \mu_{f_b \to x_2}(x_2) = \sum\limits_{x_3}f_b(x_2, x_3) \\
@@ -81,16 +81,16 @@ $$
 \mu_{x_2 \to f_c}(x_2) = \mu_{f_a \to x_2}(x_2)\mu_{f_b \to x_2}(x_2)  \\
 \mu_{f_c \to x_4}(x_4) = \sum\limits_{x_2}f_c(x_2, x_4)\mu_{x_2 \to f_c}(x_2)
 \end{eqnarray}
-$$
+$$</center>
 现在一个信息已经在两个方向上通过了每个链接，因此我们现在可以计算边缘概率分布。作为一个简单的检验，让我们验证边缘概率分布$$p(x_2)$$由正确的表达式给出。使用上面的结果将信息替换掉，我们有
-$$
+<center>$$
 \begin{eqnarray}
 \tilde{p}(x_2) = \mu_{f_a \to x_2}(x_2)\mu_{f_b \to x_2}(x_2)\mu_{f_c \to x_2}(x_2) \\
 = \left[\sum\limits_{x_1}f_a(x_1,x_2)\right]\left[\sum\limits_{x_3}f_b(x_2,x_3)\right]\left[\sum\limits_{x_4}f_c(x_2,x_4)\right] \\
 = \sum\limits_{x_1}\sum\limits_{x_3}\sum\limits_{x_4}f_a(x_1,x_2)f_b(x_2,x_3)f_c(x_2,x_4) \\
 = \sum\limits_{x_1}\sum\limits_{x_3}\sum\limits_{x_4}\tilde{p}(x)
 \end{eqnarray}
-$$
+$$</center>
 
 ##### 最大和算法 max-sum
 加乘算法能够将联合概率分布表示为一个因子图，并且高效地求出成分变量上的边缘概率分布。但是怎么找到联合概率分布的最大值以及相应的变量设置呢？
@@ -100,12 +100,12 @@ $$
 在推导加-乘算法时，我们使用了乘法的分配律。最大化也可以类似进行：
 <center>$$\max(ab,ac) = a \max(b,c)  $$</center>
 这对于$$a≥0$$的情形成立（这对于图模型的因子总成立）。这使得我们交换乘积与最大化的顺序。
-$$
+$$<center>
 \begin{eqnarray}
 \max_x p(x) = \frac{1}{Z}\max_{x_1}\dots\max_{x_M}[\psi_{1,2}(x_1,x_2)\dots\psi_{N-1,N}(x_{N-1},x_N)] \\
 =  \frac{1}{Z}\max_{x_1}\left[\max_{x_2}\left[\psi_{1,2}(x_1,x_2)\left[\dots\max_{x_N}\psi_{N-1,N}(x_{N-1},x_N)\right]\dots\right]\right]
 \end{eqnarray}
-$$
+$$</center>
 正如边缘概率的计算一样，我们看到交换最大值算符和乘积算法会产生一个更高效的计算，且更容易表示为从结点xN沿着结点链传递回结点$$x_1$$的信息。最后对所有到达根结点的信息的乘积进行最大化，这可以被称为最大化乘积算法（max-produce algorithm），与加-乘算法完全相同唯一的区别是求和被替换为了求最大值。注意，现阶段信息被从叶结点发送到根结点，而没有相反的方向。
 
 在实际应用中，许多小概率的乘积可以产生数值下溢的问题，因此更方便的做法是对联合概率分布的对数进行操作。对数函数是一个单调函数，因此求最大值的运算符可以与取对数的运算交换顺序，因此我们得到了最大化和算法（max-sum algorithm）。
