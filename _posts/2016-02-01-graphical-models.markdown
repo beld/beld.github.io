@@ -8,8 +8,125 @@ header-img: "img/post-bg-ml.png"
 tags:
     - Machine Learning
 ---
+##### 贝叶斯网络
+根据有向图模型，可以写出对应的联合概率表达式。联合概率表达式由一系列条件概率的乘积组成，每一项对应于图中的一个结点。每个这样的条件概率分布只以图中对应结点的父结点为条件。因此，对于一个有K个结点的图，联合概率为
+<center>$$p(x) = \prod\limits_{k=1}^Kp(x_k|pa_k) $$</center>
+其中$$p_ak$$表示$$x_k$$的父结点的集合，$$x={x_1,...,x_K}$$。这个关键的方程表示有向图模型的联合概率分布的分解（factorization）属性。
 
+我们考虑的有向图要满足一个重要的限制，即不能存在有向环（directed cycle）。这种没有有向环的图被称为有向无环图（directed acyclic graph），或DAG。
 
+贝叶斯多项式拟合模型是有向图描述概率分布的一个例子。联合概率分布等于先验概率分布$$p(w)$$与$$N$$个条件概率分布$$p(t_n|w)$$的乘积：
+<center>$$p(t,w) = p(w)\prod\limits_{n=1}^Np(t_n|w) $$</center>
+图模型表示的联合概率分布如图所示：
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/bayesian/images/directed_graphical_probability.png)
+这种图结构中，我们画出一个单一表示的结点$$t_n$$，然后用一个被称为板（plate）的方框圈起来，标记为$$N$$，表示有$$N$$个同类型的点。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/bayesian/images/directed_graphical_compact.png)
+我们有时会发现，显式地写出模型的参数和随机变量是很有帮助的。
+<center>$$p(t,w|x,\alpha,\sigma^2) = p(w|\alpha)\prod\limits_{n=1}^Np(t_n|w,x_n,\sigma^2)$$</center>
+对应地，我们可以在图表示中显式地写出$$x$$,$$α$$。随机变量由空心圆表示，确定性参数由小的实心圆表示。另外，在图模型中，我们通过给对应的结点加上阴影的方式来表示观测变量（observed variables），如将变量$${t_n}$$根据多项式曲线拟合中的训练集进行设置。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/bayesian/images/directed_graphical_observed.png)
+注意，$$w$$不是观测变量，因此$$w$$是潜在变量（latent variable）的一个例子。潜在变量也被称为隐含变量（hidden variable）。
+
+通常，因为我们的最终目标是对输入变量进行预测，所以对$$w$$这样的参数本身不感兴趣。假设给定一个输入值$$x$$，我们想找到以观 测数据为条件的对应的$$t$$的概率分布。描述这个问题的图模型如图所示。
+![多项式回归模型](https://mqshen.gitbooks.io/prml/content/Chapter8/bayesian/images/directed_graphical_regression.png)
+以确定性参数为条件，这个模型的所有随机变量的联合分布为
+<center>$$p(\hat{t},t,w|\hat{x},x,\alpha,\sigma^2) = \left[\prod\limits_{n=1}^Np(t_n|x_n,w,\sigma^2)\right]p(w|\alpha)p(\hat{t}|\hat{x},w,\sigma^2) $$</center>
+然后，根据概率的加法规则，对模型参数w积分，得到t^的预测分布
+<center>$$p(\hat{t}|\hat{x},x,t,\alpha,\sigma^2) \propto \int p(\hat{t},t,w|\hat{x},x,\alpha,\sigma^2)dw$$</center>
+其中我们隐式地将$$t$$中的随机变量设置为数据集中观测到的具体值。
+
+图模型描述了生成观测数据的一种因果关系（causal）过程。因此，这种模型通常被称为生成式模型（generative model）。多项式回归模型因为没有与输入变量$$x$$相关联的概率分布，所以不是生成式模型，因此无法从这个模型中人工生成数据点。通过引入合适的先验概率分布$$p(x)$$，我们可以将模型变为生成式模型，代价是增加了模型的复杂度。
+
+概率模型中的隐含变量不必具有显式的物理含义。它的引入可以仅仅为了从更简单的成分中建立一个更复杂的联合概率分布。
+
+两种情形很值得注意，即父结点和子结点都对应于离散变量的情形，以及它们都对应高斯变量的情形，因为在这两种情形中，关系可以层次化地推广，构建任意复杂的有向无环图。
+
+##### 条件独立
+
+如果一组变量的联合概率分布的表达式是根据条件概率分布的乘积表示的（即有向图的数学表达形式），那么原则上我们可以通过重复使用概率的加和规则和乘积规则测试是否具有潜在的条件独立性。在实际应用中，这种方法非常耗时。图模型的一个重要的优雅的特征是，联合概率分布的条件独立性可以直接从图中读出来，不用进行任何计算。完成这件事的一般框架被称为“d-划分”（d-separation），其中“d”表示“有向（directed）。
+
+现在，开始讨论有向图的条件独立性质。考虑三个简单的例子：
+
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/first_three.png)
+<center>$$p(a,b,c) = p(a|c)p(b|c)p(c)$$</center>
+如果没有变量是观测变量，那么我们可以通过对式两边进行积分或求和的方式，考察$$a,b$$是否是相互独立的，即
+<center>$$p(a,b) = \sum\limits_c p(a|c)p(b|c)p(c)$$</center>
+一般地，这不能分解为乘积$$p(a)p(b)$$，因此
+<center>$$a \not\perp b | \varnothing  $$</center>
+其中$$∅$$表示空集，符号$$\not\perp$$表示条件独立性质不总是成立。
+
+现在假设我们以变量$$c$$为条件,我们可以很容易地写出给定$$c$$的条件下，$$a,b$$的条件概率分布，形式为
+\begin{eqnarray}
+p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
+&=& p(a|c)p(b|c)
+\end{eqnarray}
+因此我们可以得到条件独立性质
+<center>$$a \perp b | c$$</center>
+结点$$c$$被称为关于这个路径“尾到尾”（tail-to-tail），因为结点与两个箭头的尾部相连。当我们以结点$$c$$为条件时，被用作条件的结点“阻隔”了从$$a$$到$$b$$的路径，使得$$a,b$$变得（条件）独立了。
+
+我们可以类似地考虑下面给出的图。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/second_three.png)
+这幅图对应的联合概率分布形式为
+<center>$$p(a,b,c) = p(a)p(c|a)p(b|c)$$</center>
+首先，假设所有的变量都不是观测变量。与之前一样，我们可以考察$$a,b$$是否是相互独立的，方法是对$$c$$积分或求和，得到
+<center>$$p(a,b) = p(a)\sum\limits_cp(c|a)p(b|c) = p(a)p(b|a)$$</center>
+这个结果与之前的相同。现在假设我们以结点$$c$$为条件，如图所示。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/second_three_conditional.png)
+使用贝叶斯定理
+\begin{eqnarray}
+p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
+&=& \frac{p(a)p(c|a)p(b|c)}{p(c)} \\
+&=& p(a|c)p(b|c)
+\end{eqnarray}
+从而我们又一次得到了条件独立性质
+<center>$$a \perp b | c$$</center>
+结点c被称为关于从结点$$a$$到结点$$b$$的路径“头到尾”(head-to-tail)。
+
+最后，我们考虑第三个例子，如图所示。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/third_three.png)
+联合概率分布:
+<center>$$p(a,b,c) = p(a)p(b)p(c|a,b)$$</center>
+首先考虑当没有变量是观测变量时的情形。两侧关于$$c$$积分或求和，得到
+<center>$$p(a,b) = p(a)p(b)$$</center>
+因此当没有变量被观测时，$$a,b$$是独立的，这与前两个例子相反。我们可以把这个结果写成
+<center>$$a \perp b | \varnothing $$</center>
+现在假设我们以$$c$$为条件
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/third_three_conditional.png)
+但是以结点$$c$$的值为条件。这张图中，引入条件结点使得$$a,b$$之间产生了依赖关系。
+因此，我们第三个例子与前两个例子的行为相反。图形上，因为c连接了两个箭头的头，所以我们说结点c关于从a到b的路径是“头到头”（head-to-head）。当结点$$c$$没有被观测到的时候，它“阻隔”了路径，从而变量$$a,b$$是独立的。然而，以$$c$$为条件时，路径被“解除阻隔”，使得$$a,b$$相互依赖了。
+
+如果存在从结点$$x$$到结点$$y$$的一条路径，其中路径的每一步都沿着箭头的方向，那么我们说结点$$y$$是结点$$x$$的后继（descendant）。这样，可以证明，在一个头到头的路径中，如果任意结点或者它的任意一个后继被观测到，那么路径会被“解除阻隔”。
+
+总之，一个尾到尾结点或者头到尾结点使得一条路径没有阻隔，除非它被观测到，之后它就阻隔了路径。相反，一个头到头结点如果没有被观测到，那么它阻隔了路径，但是一旦这个结点或者至少一个后继被观测到，那么路径就被“解除阻隔”了。
+
+###### D-划分
+
+考虑从A中任意结点到B中任意结点的所有可能的路径。我们说这样的路径被“阻隔”，如果它包含一个结点满足下面两个性质中的任何一个:
+
+1. 路径上的箭头以头到尾或者尾到尾的方式交汇于这个结点，且这个结点在集合C中。
+2. 箭头以头到头的方式交汇于这个结点，且这个结点和它的所有后继都不在集合C中。
+
+如果所有的路径都被“阻隔”，那么我们说$$C$$把$$A$$从$$B$$中D-划分开，且图中所有变量上的联合概率分布将会满足$$A⊥B|C$$。
+
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/d_separation.png)
+在左图中，从$$a$$到$$b$$的路径没有被结点$$f$$阻隔，因为对于这个路径来说，它是一个尾到尾结点，并且没有被观测到。这条路径也没有被结点$$e$$阻隔，因为虽然后者是一个头到头的结点，但是它有一个后继$$c$$在条件集合中，且被观测到。因此条件独立关系$$a⊥b|c$$在这个图中不成立。在右图中，从$$a$$到$$b$$的路径被结点$$f$$阻隔，因为它是一个尾到尾的结点，并且被观测到，因此使用这幅图进行分解的任何概率分布都满足条件独立性质$$a⊥b|f$$。注意，这个路径也被结点$$e$$阻隔，因为$$e$$是一个头到头的结点，并且它和它的后继都没在条件集合中。
+
+###### 马尔科夫毯 Markov Blanket
+考虑一个联合概率分布$$p(x_1,...,x_D)$$，它由一个具有$$D$$个结点的有向图表示。考虑变量$$x_i$$对应的结点上的条件概率分布，其中条件为所有剩余的变量$$x_{j≠i}$$使用分解性质，我们可以将条件概率分布表示为下面的形式
+\begin{eqnarray}
+p(x_i|x_{\{j \neq i\}} &=& \frac{p(x_1,...,x_D)}{\int p(x_1,...,x_D)dx_i} \\
+&=& \frac{\prod\limits_kp(x_k|pa_k)}{\int \prod\limits_kp(x_k|pa_k)dx_i}
+\end{eqnarray}
+我们现在观察到任何与$$x_i$$没有函数依赖关系的因子都可以提到$$x_i$$的积分外面，从而在分子和分母之间消去。唯一剩余的因子是结点$$x_i$$本身的条件概率分布$$p(x_i|pa_i)$$，以及满足下面性质的结点$$x_k$$的条件概率分布：结点$$x_i$$在$$p(x_k|pa_k)$$的条件集合中，即$$x_i$$是$$x_k$$的父结点。条件概率分布$$p(x_i|pa_i)$$依赖于结点$$x_i$$的父结点，而条件概率分布$$p(x_k|pa_k)$$依赖于$$x_i$$的子结点以及同父结点（co-parents），即那些对应于$$x_k$$（而不是$$x_i$$）的父结点的变量。由父结点、子结点、同父结点组成的结点集合被称为马尔科夫毯，如图所示。
+![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/markov_blanket.png)
+它的性质为：以图中所有剩余结点为条件，$$x_i$$的条件概率分布值依赖于马尔科夫毯中的变量。
+
+##### 马尔科夫随机场 Markov random field
+一个马尔科夫随机场（Markov random field），也被称为马尔科夫网络（Markov network）或无向图模型（undirected graphical model），包含一组结点，每个结点都对应着一个变量或一组变量。链接是无向的，即不含有箭头。在无向图的情形中，首先讨论条件独立性质是比较方便的。
+
+在有向图的情形下，我们看到可以通过使用被称为D-划分的图检测方法判断一个特定的条件独立性质是否成立。这涉及到判断链接两个结点集合的路径是否被“阻隔”。马尔科夫随机场是另一种概率分布的图语义表示，使得条件独立性由单一的图划分确定。
+
+。。。。待续
 
 ##### 树
 在无向图的情形中，树被定义为满足下面性质的图：任意一对结点之间有且只有一条路径。于是这样的图没有环。在有向图的情形中，树的定义为：有一个没有父结点的结点，被称为根（root），其他所有的结点都有一个父结点。如果有向图中存在具有多个父结点的结点，但是在任意两个结点之间仍然只有一条路径（忽略箭头方向），那么这个图被称为多树（polytree）。
