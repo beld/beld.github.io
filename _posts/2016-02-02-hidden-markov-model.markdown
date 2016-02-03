@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "隐马尔科夫模型"
+title:      "隐马尔科夫模型（一）"
 subtitle:   ""
 date:       2016-02-02 23:11:00
 author:     "Beld"

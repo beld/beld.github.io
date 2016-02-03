@@ -2,7 +2,7 @@
 layout:     post
 title:      "隐马尔科夫模型（二）"
 subtitle:   ""
-date:       2016-02-02 17:11:00
+date:       2016-02-03 17:11:00
 author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
