@@ -56,10 +56,14 @@ tags:
 其中$$∅$$表示空集，符号$$\not\perp$$表示条件独立性质不总是成立。
 
 现在假设我们以变量$$c$$为条件,我们可以很容易地写出给定$$c$$的条件下，$$a,b$$的条件概率分布，形式为
+
+$$
 \begin{eqnarray}
 p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
 &=& p(a|c)p(b|c)
 \end{eqnarray}
+$$
+
 因此我们可以得到条件独立性质
 <center>$$a \perp b | c$$</center>
 结点$$c$$被称为关于这个路径“尾到尾”（tail-to-tail），因为结点与两个箭头的尾部相连。当我们以结点$$c$$为条件时，被用作条件的结点“阻隔”了从$$a$$到$$b$$的路径，使得$$a,b$$变得（条件）独立了。
@@ -73,11 +77,15 @@ p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
 这个结果与之前的相同。现在假设我们以结点$$c$$为条件，如图所示。
 ![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/second_three_conditional.png)
 使用贝叶斯定理
+
+$$
 \begin{eqnarray}
 p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
 &=& \frac{p(a)p(c|a)p(b|c)}{p(c)} \\
 &=& p(a|c)p(b|c)
 \end{eqnarray}
+$$
+
 从而我们又一次得到了条件独立性质
 <center>$$a \perp b | c$$</center>
 结点c被称为关于从结点$$a$$到结点$$b$$的路径“头到尾”(head-to-tail)。
@@ -113,10 +121,13 @@ p(a,b|c) &=& \frac{p(a,b,c)}{p(c)} \\
 
 ###### 马尔科夫毯 Markov Blanket
 考虑一个联合概率分布$$p(x_1,...,x_D)$$，它由一个具有$$D$$个结点的有向图表示。考虑变量$$x_i$$对应的结点上的条件概率分布，其中条件为所有剩余的变量$$x_{j≠i}$$使用分解性质，我们可以将条件概率分布表示为下面的形式
+
+$$
 \begin{eqnarray}
 p(x_i|x_{\{j \neq i\}} &=& \frac{p(x_1,...,x_D)}{\int p(x_1,...,x_D)dx_i} \\
 &=& \frac{\prod\limits_kp(x_k|pa_k)}{\int \prod\limits_kp(x_k|pa_k)dx_i}
-\end{eqnarray}
+\end{eqnarray}$$
+
 我们现在观察到任何与$$x_i$$没有函数依赖关系的因子都可以提到$$x_i$$的积分外面，从而在分子和分母之间消去。唯一剩余的因子是结点$$x_i$$本身的条件概率分布$$p(x_i|pa_i)$$，以及满足下面性质的结点$$x_k$$的条件概率分布：结点$$x_i$$在$$p(x_k|pa_k)$$的条件集合中，即$$x_i$$是$$x_k$$的父结点。条件概率分布$$p(x_i|pa_i)$$依赖于结点$$x_i$$的父结点，而条件概率分布$$p(x_k|pa_k)$$依赖于$$x_i$$的子结点以及同父结点（co-parents），即那些对应于$$x_k$$（而不是$$x_i$$）的父结点的变量。由父结点、子结点、同父结点组成的结点集合被称为马尔科夫毯，如图所示。
 ![](https://mqshen.gitbooks.io/prml/content/Chapter8/conditional/images/markov_blanket.png)
 它的性质为：以图中所有剩余结点为条件，$$x_i$$的条件概率分布值依赖于马尔科夫毯中的变量。
@@ -179,7 +190,8 @@ $$
 ![](https://mqshen.gitbooks.io/prml/content/Chapter8/inference/images/factor_sum_product.png)
 它的未标准化联合概率分布为
 <center>$$\tilde{p}(x) = f_a(x_1,x_2)f_b(x_2,x_3)f_c(x_2,x_4)$$</center>
-让我们令结点$$x_3$$为根结点，此时有两个叶结点$$x_1$$,$$x_4$$。从叶结点开始，我们有  
+让我们令结点$$x_3$$为根结点，此时有两个叶结点$$x_1$$,$$x_4$$。从叶结点开始，我们有
+
 $$
 \begin{eqnarray}
 \mu_{x_1 \to f_a}(x_1) &=& 1  \\
@@ -191,7 +203,8 @@ $$
 \end{eqnarray}
 $$
 
-一旦信息传播完成，我们就可以将信息从根结点传递到叶结点，这些信息为  
+一旦信息传播完成，我们就可以将信息从根结点传递到叶结点，这些信息为
+
 $$
 \begin{eqnarray}
 \mu_{x_3 \to f_b}(x_3) &=&1  \\
