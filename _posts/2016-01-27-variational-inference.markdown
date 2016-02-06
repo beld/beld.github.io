@@ -38,11 +38,14 @@ tags:
 q(Z) = \prod\limits_{i=1}^Mq_i(Z_i) \tag{10.5}
 需要强调的是，我们关于概率分布没有做更多的假设，我们没有限制各个因子qi(Zi)的函数形式。变分推断的这个分解的形式对应于物理学中的一个近似框架，叫做平均场理论（mean field theory）。
 
-在所有具有上面形式的概率分布$$q(Z)$$中，我们寻找下界$$L(q)$$最大的概率分布。于是，我们希望对$$L(q)$$关于所有的概率分布$$q_i(Z_i)$$（简记作$$q_j$$）进行一个自由形式的（变分）最优化。通过关于每个因子进行最优化来完成整体的最优化过程。首先分离出依赖于一个因子qj的项，这样我们就有
+在所有具有上面形式的概率分布$$q(Z)$$中，我们寻找下界$$L(q)$$最大的概率分布。于是，我们希望对$$L(q)$$关于所有的概率分布$$q_i(Z_i)$$（简记作$$q_j$$）进行一个自由形式的（变分）最优化。通过关于每个因子进行最优化来完成整体的最优化过程。首先分离出依赖于一个因子qj的项，这样我们就有  
+$$
 \begin{eqnarray}
 L(q) &=& \int\prod\limits_iq_i\left\{\ln p(X,Z) - \sum\limits_i\ln q_i\right\}dZ \\
 &=& \int q_j\left\{\int \ln p(X,Z)\prod\limits_{i \neq j}q_i dZ_i\right\}dZ_j - \int q_j\ln q_jdZ_j + const \\
 &=& \int q_j\ln\tilde{p}(X,Z_j)dZ_j - \int q_j\ln q_j dZ_j + const
 \end{eqnarray}
+$$
+
 其中，我们定义了一个新的概率分布p~(X,Zj)，形式为
 \ln\tilde{p}(X,Z_j) = \mathbb{E}_{i \neq j}[\ln p(X,Z)] + const \tag{10.7}
