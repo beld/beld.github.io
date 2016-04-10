@@ -2,7 +2,7 @@
 layout:     post
 title:      "Python: labels as float 1-hot encodings"
 subtitle:   "Understanding == and broadcasting to a NumPy array"
-date:       2016-04-10 12:10:00
+date:       2016-04-10 01:30:00
 author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
@@ -10,7 +10,7 @@ tags:
 ---
 怎么样将numpy一维数组labels变成1-of-K编码的k维数组呢？Tensorflow教程里用了一行代码：
 
-```Python
+```
 labels = (np.arange(num_labels) == labels[:,None]).astype(np.float32)
 ```
 
@@ -18,7 +18,7 @@ labels = (np.arange(num_labels) == labels[:,None]).astype(np.float32)
 
 首先，要理解$$==$$都干了什么。它可以将整个向量与一个scalar进行一一比较，然后得到一个包含比较结果的bool数组。
 
-```Python
+```
 >>> labels = np.array([1,2,0,0,2])
 >>> labels == 0
 array([False, False,  True,  True, False], dtype=bool)
