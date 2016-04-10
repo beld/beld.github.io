@@ -25,6 +25,7 @@ array([False, False,  True,  True, False], dtype=bool)
 >>> (labels == 0).astype(np.float32)
 array([ 0.,  0.,  1.,  1.,  0.], dtype=float32)
 ```
+
 得到bool型数组后，再将其强制转换成float型：False==0 in Python, and True==1。到这里，其实我们已经可以用循环得到每个label的one hot编码的方法：
 
 ```
@@ -40,6 +41,7 @@ array([[ 0.,  0.,  1.,  1.,  0.],
  >>The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python.
 
 NumPy operations are usually done on pairs of arrays on an element-by-element basis. In the simplest case, the two arrays must have exactly the same shape, as in the following example:
+
 ```
 >>> a = np.array([1.0, 2.0, 3.0])
 >>> b = np.array([2.0, 2.0, 2.0])
@@ -47,6 +49,7 @@ NumPy operations are usually done on pairs of arrays on an element-by-element ba
 array([ 2.,  4.,  6.])
 ```
 NumPy’s broadcasting rule relaxes this constraint when the arrays’ shapes meet certain constraints. The simplest broadcasting example occurs when an array and a scalar value are combined in an operation:
+
 ```
 >>> a = np.array([1.0, 2.0, 3.0])
 >>> b = 2.0
@@ -54,6 +57,7 @@ NumPy’s broadcasting rule relaxes this constraint when the arrays’ shapes me
 array([ 2.,  4.,  6.])
 ```
 我们再来看一些broadcasting的具体实例：
+
 ```
 >>> x = np.arange(4)
 >>> xx = x.reshape(4,1)
@@ -91,6 +95,7 @@ array([[  1.,   2.,   3.],
 ```
 
 现在```labels.shape = (5,)```，我们将它增加一个axis，reshape为(5,1)，然后就可以利用broadcasting。
+
 ```
 >>> np.arange(3) == labels[:,None]
 array([[False,  True, False],
