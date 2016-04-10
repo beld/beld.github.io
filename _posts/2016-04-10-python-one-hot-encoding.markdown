@@ -35,11 +35,11 @@ array([[ 0.,  0.,  1.,  1.,  0.],
        [ 0.,  1.,  0.,  0.,  1.]], dtype=float32)
 ```
 
- 但是这样并没有充分利用numpy的优势，我们可以利用numpy broadcasting直接得到结果。
+但是这样并没有充分利用numpy的优势，我们可以利用numpy broadcasting直接得到结果。
 
- 我们先来看一下broadcasting的官方描述：
- 
- >>The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python.
+我们先来看一下broadcasting的官方描述：
+
+>>The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python.
 
 NumPy operations are usually done on pairs of arrays on an element-by-element basis. In the simplest case, the two arrays must have exactly the same shape, as in the following example:
 
