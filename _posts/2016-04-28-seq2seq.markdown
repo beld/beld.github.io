@@ -6,10 +6,12 @@ date:       2016-04-25 14:30:00
 author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
+    - Tensorflow
     - Machine Learning
+    - Deep Learning
 ---
 
-### General sequence to sequence learning problem with neural networks
+##### General sequence to sequence learning problem with neural networks
 
 The Recurrent Neural Network (RNN) is a natural generalization of feedforward neural networks to sequences. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationships. The simplest strategy for general sequence learning is to map the input sequence to a fixed-sized vector using one RNN, and then to map the vector to the target sequence with another RNN. But it would be difficult to train the RNNs due to the resulting long term dependencies.
 

@@ -7,6 +7,8 @@ author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
     - Tensorflow
+    - Machine Learning
+    - Deep Learning
 ---
 
 

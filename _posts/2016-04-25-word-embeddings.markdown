@@ -7,6 +7,7 @@ author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
     - Tensorflow
+    - Machine Learning
 ---
 
 Motivation: Why Learn Word Embeddings?
