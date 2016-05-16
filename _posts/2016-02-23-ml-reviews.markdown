@@ -2,7 +2,7 @@
 layout:     post
 title:      "Machine Learning Exam Review"
 subtitle:   ""
-date:       2016-04-25 14:30:00
+date:       2016-02-23 14:30:00
 author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
@@ -406,7 +406,7 @@ Start with N clusters, each contains only one point.
 At each step, merge the two most similar groups.
 Repeat until there is only one single group.
 
-Linkage: 
+Linkage:
 1.	Single: closest
 2.	Complete: farthest.
 3.	Average: average.

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Word Embeddings"
+title:      "Recurrent Neural Network"
 subtitle:   ""
 date:       2016-04-25 14:30:00
 author:     "Beld"
@@ -8,7 +8,6 @@ header-img: "img/post-bg-ml.png"
 tags:
     - Tensorflow
 ---
-
 
 
 It’s unclear how a traditional neural network could use its reasoning about previous events in the film to inform later ones. Recurrent neural networks address this issue. They are networks with loops in them, allowing information to persist.
@@ -25,8 +24,6 @@ The key to LSTMs is the cell state, the horizontal line running through the top 
 
 The core of the model consists of an LSTM cell that processes one word at a time and computes probabilities of the possible continuations of the sentence. The memory state of the network is initialized with a vector of zeros and gets updated after reading each word.
 
-
 There are two factors that affect the magnitude of gradients - the weights and the activation functions (or more precisely, their derivatives) that the gradient passes through. If either of these factors is smaller than 1, then the gradients may vanish in time; if larger than 1, then exploding might happen.
-
 
 LSTM architecture allows disabling of writing to a cell by turning "off" the gate, thus preventing any changes to the contents of the cell over many cycles. This means that longer term dependencies can be learned; which aren't possible with tanh-type architectures. Similarly even when the gate is "open", LSTM update equation does not completely replace the contents of a cell at any time,  rather maintaining a weighted average of a new value and previous value.
