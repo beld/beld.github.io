@@ -75,6 +75,48 @@
 		<array>
 			<string>2016-01-27-variational-inference.markdown</string>
 		</array>
+		<array>
+			<string>2016-01-31-regression.markdown</string>
+		</array>
+		<array>
+			<string>2016-02-01-graphical-models.markdown</string>
+		</array>
+		<array>
+			<string>2016-02-02-hidden-markov-model.markdown</string>
+		</array>
+		<array>
+			<string>2016-02-03-hidden-markov-model.markdown</string>
+		</array>
+		<array>
+			<string>2016-02-05-boosting.markdown</string>
+		</array>
+		<array>
+			<string>2016-02-23-ml-reviews.markdown</string>
+		</array>
+		<array>
+			<string>2016-04-10-python-one-hot-encoding.markdown</string>
+		</array>
+		<array>
+			<string>2016-04-25-rnn.markdown</string>
+		</array>
+		<array>
+			<string>2016-04-25-word-embeddings.markdown</string>
+		</array>
+		<array>
+			<string>2016-04-28-seq2seq.markdown</string>
+		</array>
+		<array>
+			<string>2016-05-25-Intersection-of-Two-Arrays.markdown</string>
+		</array>
+		<array>
+			<string>2016-05-25-multi-task-learning.markdown</string>
+		</array>
+		<array>
+			<string>2016-05-26-leetcode-top-k-frequent-elements.markdown</string>
+		</array>
+		<array>
+			<string>2016-05-30.swift-custom-navigation-bar.markdown</string>
+		</array>
 	</array>
 </dict>
 </plist>

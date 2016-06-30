@@ -1,0 +1,11 @@
+// Change the navigation bar background color to blue.
+navigationController!.navigationBar.barTintColor = UIColor.blueColor()
+
+// Change the color of the navigation bar button items to white.
+navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+
+navigationController!.navigationBar.titleTextAttributes =
+	([NSFontAttributeName: UIFont(name: "BradleyHandITCTT-Bold", size: 36)!,
+		NSForegroundColorAttributeName: UIColor.yellowColor()])
+
+http://iosfontlist.com
