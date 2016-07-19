@@ -2,7 +2,7 @@
 layout:     post
 title:      "Tensorflow: How to re-index the tensors"
 subtitle:   ""
-date:       2016-07-27 12:00:00
+date:       2016-07-07 12:00:00
 author:     "Beld"
 header-img: "img/post-bg-ml.png"
 tags:
