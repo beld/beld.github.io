@@ -15,6 +15,7 @@ Mac Office默认粘贴原格式，但是绝大多数情况我们都需要的是�
 
 在Tools > Macro > Macros… 里创建一个新的macro叫做PasteUnformatted，然后会打开Visual Basic editor，将下面代码贴入：
 
+
 ```
 Sub PasteUnformatted()
 Selection.PasteSpecial DataType:=wdPasteText
